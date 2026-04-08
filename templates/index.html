@@ -3,71 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paybass | Global Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>Paybass | Global Currency Index</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #020617; --card-bg: #0f172a; --accent: #f59e0b; --text: #f8fafc;
+        }
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white; font-family: 'Inter', 'Tajawal', sans-serif;
-            margin: 0; display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh; padding: 20px;
+            background-color: var(--bg); color: var(--text);
+            font-family: 'Inter', sans-serif; margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
         }
-        .container { width: 100%; max-width: 600px; text-align: center; }
-        .card {
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px);
-            border-radius: 24px; padding: 30px; margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        .header { margin: 40px 0; text-align: center; }
+        .header h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
+        .header p { color: #94a3b8; font-size: 1.1rem; }
+
+        .grid-container {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            width: 100%; max-width: 600px;
         }
-        .price-text {
-            font-size: 3.5rem; color: #10b981; margin: 15px 0;
-            font-weight: 800; letter-spacing: -1px;
+        .currency-card {
+            background: var(--card-bg); border: 1px solid #1e293b;
+            border-radius: 20px; padding: 25px; text-align: center;
+            cursor: pointer; transition: all 0.3s ease;
+            text-decoration: none; color: inherit;
         }
-        .btn-update {
-            background: none; border: 1px solid #10b981; color: #10b981;
-            padding: 8px 20px; border-radius: 20px; cursor: pointer;
-            font-size: 0.85rem; transition: all 0.3s; margin-top: 10px;
+        .currency-card:hover {
+            border-color: var(--accent); transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
-        .btn-update:hover { background: #10b981; color: #0f172a; }
-        .sale-card { border: 1px solid rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.05); }
+        .currency-icon {
+            font-size: 2rem; color: var(--accent); margin-bottom: 10px;
+            display: block;
+        }
+        .currency-name { font-weight: 700; font-size: 1.2rem; }
+        .currency-sub { font-size: 0.8rem; color: #64748b; margin-top: 5px; }
+
+        .sale-footer {
+            margin-top: 50px; padding: 20px; border-radius: 15px;
+            border: 1px dashed #334155; width: 100%; max-width: 500px; text-align: center;
+        }
         .btn-contact {
-            background: #f59e0b; color: #0f172a; padding: 15px 35px;
-            border-radius: 12px; text-decoration: none; font-weight: 700;
-            display: inline-block; margin-top: 20px; text-transform: uppercase;
-        }
-        .status-badge {
-            background: rgba(16, 185, 129, 0.1); color: #10b981;
-            padding: 6px 16px; border-radius: 100px; font-size: 0.75rem; font-weight: 700;
+            background: var(--accent); color: #020617; padding: 12px 25px;
+            border-radius: 10px; text-decoration: none; font-weight: 800;
+            display: inline-block; margin-top: 15px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="status-badge">Live Market Data</div>
-            <h1 style="font-size: 1.5rem; margin-top: 15px;">Bitcoin Global Price</h1>
-            <div class="price-text" id="btc-price">{{ btc }}</div>
-            <button class="btn-update" onclick="refreshPrice()" id="refresh-btn">Update Price Only ↻</button>
-        </div>
 
-        <div class="card sale-card">
-            <h2 style="color: #f59e0b;">Premium Domain for Sale</h2>
-            <p style="color: #94a3b8;">Paybass.com is a strategic asset for FinTech or Music-Tech brands.</p>
-            <a href="mailto:ssess535@gmail.com?subject=Inquiry: Paybass.com Acquisition" class="btn-contact">Contact for Acquisition</a>
-        </div>
+    <div class="header">
+        <h1>Paybass</h1>
+        <p>World's Leading Currency Markets</p>
     </div>
 
-    <script>
-    function refreshPrice() {
-        const btn = document.getElementById('refresh-btn');
-        const priceText = document.getElementById('btc-price');
-        btn.innerText = "Updating...";
-        fetch('/get_price')
-            .then(res => res.json())
-            .then(data => {
-                priceText.innerText = data.price;
-                btn.innerText = "Update Price Only ↻";
-            }).catch(() => { btn.innerText = "Error, try again"; });
-    }
-    </script>
+    <div class="grid-container">
+        <a href="/usd" class="currency-card">
+            <span class="currency-icon">USD</span>
+            <div class="currency-name">US Dollar</div>
+            <div class="currency-sub">Global Reserve Currency</div>
+        </a>
+
+        <a href="/eur" class="currency-card">
+            <span class="currency-icon">EUR</span>
+            <div class="currency-name">Euro</div>
+            <div class="currency-sub">European Union Markets</div>
+        </a>
+
+        <a href="/cny" class="currency-card">
+            <span class="currency-icon">CNY</span>
+            <div class="currency-name">Yuan</div>
+            <div class="currency-sub">Asian Trading Power</div>
+        </a>
+
+        <a href="/gbp" class="currency-card">
+            <span class="currency-icon">GBP</span>
+            <div class="currency-name">Pound</div>
+            <div class="currency-sub">British Financial Standard</div>
+        </a>
+    </div>
+
+    <div class="sale-footer">
+        <p style="color: #94a3b8; font-size: 0.9rem;">Paybass.com is available for acquisition</p>
+        <a href="mailto:ssess535@gmail.com" class="btn-contact">INQUIRE NOW</a>
+    </div>
+
 </body>
 </html>
