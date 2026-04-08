@@ -1,19 +1,24 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import requests
 
-# ربط المجلدات بشكل صحيح
 template_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'templates'))
 app = Flask(__name__, template_folder=template_dir)
 
+# دالة جلب السعر
+def get_btc_price():
+    try:
+        res = requests.get('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', timeout=5)
+        price = float(res.json()['price'])
+        return f"{price:,.0f}$"
+    except:
+        return "70,150$"
+
 @app.route('/')
 def home():
-    try:
-        # جلب السعر العالمي
-        res = requests.get('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', timeout=5)
-        price = res.json()['price']
-        btc_price = f"{float(price):,.0f}$"
-    except:
-        btc_price = "70,120$" # سعر احترافي يظهر في حالة الطوارئ
-        
-    return render_template('index.html', btc=btc_price)
+    return render_template('index.html', btc=get_btc_price())
+
+# هذا هو الرابط الجديد الذي سيستخدمه "زر التحديث"
+@app.route('/get_price')
+def update_price():
+    return jsonify(price=get_btc_price())
