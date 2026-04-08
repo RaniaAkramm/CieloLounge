@@ -1,95 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paybass | Global Financial Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white;
-            font-family: 'Inter', 'Tajawal', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container { width: 100%; max-width: 600px; text-align: center; }
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border-radius: 24px;
-            padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .price-text {
-            font-size: 3.5rem;
-            color: #10b981;
-            margin: 15px 0;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-        .sale-card {
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, rgba(0,0,0,0) 100%);
-        }
-        .btn-contact {
-            background: #f59e0b;
-            color: #0f172a;
-            padding: 15px 35px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-        }
-        .status-badge {
-            background: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-        h1 { font-size: 1.5rem; color: #f8fafc; }
-        h2 { font-size: 1.3rem; color: #f59e0b; }
-        p { color: #94a3b8; line-height: 1.6; }
-    </style>
-</head>
-<body>
+<div class="card">
+    <div class="status-badge">Live Market Data</div>
+    <h1>Bitcoin Global Price</h1>
+    
+    <div class="price-text" id="btc-price">{{ btc }}</div>
+    
+    <button onclick="refreshPrice()" id="refresh-btn" style="background:none; border:1px solid #10b981; color:#10b981; padding:5px 15px; border-radius:20px; cursor:pointer; font-size:0.8rem;">
+        Update Price Only ↻
+    </button>
+</div>
 
-    <div class="container">
-        <div class="card">
-            <div class="status-badge">Live Market Data</div>
-            <h1>Bitcoin Global Price</h1>
-            <div class="price-text">{{ btc }}</div>
-            <p>Real-time data from global exchanges</p>
-        </div>
-
-        <div class="card sale-card">
-            <h2>Premium Domain for Sale</h2>
-            <p><strong>Paybass.com</strong> is a strategic asset for FinTech or Music-Tech brands.</p>
-            <p style="font-size: 0.85rem;">هذا النطاق المميز معروض للبيع للمستثمرين والشركات العالمية.</p>
-            <a href="mailto:ssess535@gmail.com?subject=Inquiry: Paybass.com Acquisition" class="btn-contact">
-                Contact for Acquisition
-            </a>
-        </div>
-
-        <div class="card">
-            <div class="status-badge" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">Roadmap</div>
-            <h1>Platform Evolution</h1>
-            <p>Expanding to support all global currencies, gold, and stocks soon.</p>
-        </div>
-    </div>
-
-</body>
-</html>
+<script>
+function refreshPrice() {
+    const btn = document.getElementById('refresh-btn');
+    const priceText = document.getElementById('btc-price');
+    
+    btn.innerText = "Updating...";
+    
+    // طلب السعر الجديد من السيرفر بدون تحديث الصفحة
+    fetch('/get_price')
+        .then(response => response.json())
+        .then(data => {
+            priceText.innerText = data.price;
+            btn.innerText = "Update Price Only ↻";
+        })
+        .catch(err => {
+            btn.innerText = "Try Again";
+        });
+}
+</script>
