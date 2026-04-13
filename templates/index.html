@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" id="html-tag">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +8,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-blue: #3b82f6;
+        }
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #050505;
             color: white;
             overflow-x: hidden;
+            transition: all 0.3s ease;
         }
         .serif { font-family: 'Playfair Display', serif; }
         
-        /* Elegant Domain Banner - Less intrusive but highly visible */
         .sale-banner {
             background: linear-gradient(90deg, #1e3a8a, #3b82f6, #1e3a8a);
             background-size: 200% auto;
@@ -29,9 +32,9 @@
         }
 
         .hero-section {
-            height: 90vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('https://loremflickr.com/1920/1080/restaurant,luxury') center/cover no-repeat;
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://loremflickr.com/1920/1080/luxury,restaurant,interior') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -46,13 +49,12 @@
             transition: 0.4s ease;
         }
         .menu-card:hover {
-            border-color: #3b82f6;
+            border-color: var(--primary-blue);
             transform: translateY(-8px);
         }
         .img-box {
             height: 220px;
             background-color: #1a1a1a;
-            position: relative;
         }
         .img-box img {
             width: 100%;
@@ -60,31 +62,48 @@
             object-fit: cover;
         }
 
-        /* Loading fallback for images */
-        .img-placeholder {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #1a1a1a;
-            z-index: -1;
+        /* Language Switcher Styling */
+        .lang-dropdown {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            outline: none;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .lang-dropdown option {
+            background: #111;
+            color: white;
         }
     </style>
 </head>
 <body dir="rtl">
 
-    <!-- لافتة بيع الدومين - تصميم أنيق واحترافي -->
-    <div class="sale-banner py-3 px-6 sticky top-0 z-[500] shadow-xl">
+    <!-- لافتة بيع الدومين -->
+    <div class="sale-banner py-2 px-6 sticky top-0 z-[500] shadow-xl">
         <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
             <div class="flex items-center gap-3">
-                <span class="bg-yellow-400 text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">For Sale</span>
-                <h2 class="text-sm md:text-lg font-bold tracking-tight">النطاق متاح للشراء: <span class="underline decoration-yellow-400">CIELOLOUNGE.COM</span></h2>
+                <span class="bg-yellow-400 text-black text-[9px] font-black px-2 py-0.5 rounded uppercase" id="tag-for-sale">للبيع</span>
+                <h2 class="text-xs md:text-sm font-bold tracking-tight" id="banner-text">النطاق متاح للشراء: CIELOLOUNGE.COM</h2>
             </div>
+            
             <div class="flex items-center gap-4">
-                <span class="hidden md:block text-xs opacity-80">للتواصل المباشر مع المالك:</span>
-                <a href="https://wa.me/9647805380508" class="bg-white text-blue-900 px-4 py-1.5 rounded-full text-sm font-black hover:scale-105 transition transform">
-                    <i class="fab fa-whatsapp ml-1"></i> 009647805380508
+                <!-- اختيار اللغة -->
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-globe text-xs"></i>
+                    <select class="lang-dropdown" onchange="changeLanguage(this.value)">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+                <a href="https://wa.me/9647805380508" class="bg-white text-blue-900 px-4 py-1 rounded-full text-xs font-black">
+                    <i class="fab fa-whatsapp"></i> 009647805380508
                 </a>
             </div>
         </div>
@@ -93,12 +112,12 @@
     <!-- Hero Section -->
     <header class="hero-section px-6">
         <div class="relative z-10">
-            <h3 class="text-blue-400 font-bold tracking-[0.4em] mb-4 text-sm uppercase">Luxury Experience</h3>
+            <h3 class="text-blue-400 font-bold tracking-[0.4em] mb-4 text-xs uppercase" id="hero-sub">Luxury Experience</h3>
             <h1 class="text-7xl md:text-9xl serif italic mb-6">Cielo.</h1>
-            <p class="max-w-xl mx-auto text-lg text-gray-200 mb-10 leading-relaxed font-light">إطلالة تعانق السحاب، وأطباق تحاكي الفن. سيلو لونج وجهتكم الأولى للفخامة في قلب العراق.</p>
+            <p class="max-w-xl mx-auto text-lg text-gray-200 mb-10 leading-relaxed font-light" id="hero-desc">إطلالة تعانق السحاب، وأطباق تحاكي الفن. سيلو لونج وجهتكم الأولى للفخامة في قلب العراق.</p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#food" class="bg-white text-black px-10 py-4 font-bold rounded-full hover:bg-blue-600 hover:text-white transition-all text-sm">قائمة الطعام</a>
-                <a href="#events" class="border border-white/30 text-white px-10 py-4 font-bold rounded-full hover:bg-white hover:text-black transition-all text-sm">أجواء سيلو</a>
+                <a href="#food" class="bg-white text-black px-10 py-4 font-bold rounded-full hover:bg-blue-600 hover:text-white transition-all text-sm" id="btn-menu">قائمة الطعام</a>
+                <a href="#events" class="border border-white/30 text-white px-10 py-4 font-bold rounded-full hover:bg-white hover:text-black transition-all text-sm" id="btn-events">أجواء سيلو</a>
             </div>
         </div>
     </header>
@@ -107,129 +126,89 @@
         
         <!-- قسم الأكلات البحرية -->
         <section id="food" class="mb-24">
-            <div class="mb-12 border-r-4 border-blue-600 pr-6">
-                <h2 class="text-4xl serif italic">كنوز البحر</h2>
-                <p class="text-gray-500 mt-2 italic">أفضل الاختيارات البحرية الطازجة يومياً</p>
+            <div class="mb-12 border-r-4 border-blue-600 pr-6" id="section-seafood-header">
+                <h2 class="text-4xl serif italic" id="seafood-title">كنوز البحر</h2>
+                <p class="text-gray-500 mt-2 italic" id="seafood-sub">أفضل الاختيارات البحرية الطازجة يومياً</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Item 1 -->
                 <div class="menu-card">
-                    <div class="img-box">
-                        <img src="https://loremflickr.com/600/400/lobster,seafood" alt="[attachment_0](attachment)">
-                    </div>
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/lobster,cooked" alt="[attachment_0](attachment)"></div>
                     <div class="p-6">
-                        <h4 class="text-xl font-bold mb-2">لوبستر سيلو الملكي</h4>
-                        <p class="text-gray-500 text-sm">طهي فاخر مع زبدة الأعشاب.</p>
+                        <h4 class="text-xl font-bold mb-2" id="item-lobster-name">لوبستر سيلو الملكي</h4>
+                        <p class="text-gray-500 text-sm" id="item-lobster-desc">طهي فاخر مع زبدة الأعشاب.</p>
                     </div>
                 </div>
-                <!-- Item 2 -->
                 <div class="menu-card">
-                    <div class="img-box">
-                        <img src="https://loremflickr.com/600/400/shrimp,cooked" alt="[attachment_1](attachment)">
-                    </div>
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/shrimp,seafood" alt="[attachment_1](attachment)"></div>
                     <div class="p-6">
-                        <h4 class="text-xl font-bold mb-2">جمبري مشوي ملكي</h4>
-                        <p class="text-gray-500 text-sm">متبل بصلصة الليمون والزعفران.</p>
+                        <h4 class="text-xl font-bold mb-2" id="item-shrimp-name">جمبري مشوي ملكي</h4>
+                        <p class="text-gray-500 text-sm" id="item-shrimp-desc">متبل بصلصة الليمون والزعفران.</p>
                     </div>
                 </div>
-                <!-- Item 3 -->
                 <div class="menu-card">
-                    <div class="img-box">
-                        <img src="https://loremflickr.com/600/400/salmon,fish" alt="[attachment_2](attachment)">
-                    </div>
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/salmon,fish" alt="[attachment_2](attachment)"></div>
                     <div class="p-6">
-                        <h4 class="text-xl font-bold mb-2">سلمون مشوي ببطء</h4>
-                        <p class="text-gray-500 text-sm">يقدم مع الخضار الموسمية.</p>
+                        <h4 class="text-xl font-bold mb-2" id="item-salmon-name">سلمون مشوي ببطء</h4>
+                        <p class="text-gray-500 text-sm" id="item-salmon-desc">يقدم مع الخضار الموسمية.</p>
                     </div>
                 </div>
-                <!-- Item 4 -->
                 <div class="menu-card">
-                    <div class="img-box">
-                        <img src="https://loremflickr.com/600/400/seafood,platter" alt="">
-                    </div>
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/seafood,platter" alt=""></div>
                     <div class="p-6">
-                        <h4 class="text-xl font-bold mb-2">صينية البحار المشكلة</h4>
-                        <p class="text-gray-500 text-sm">تشكيلة واسعة من ثمار البحر.</p>
+                        <h4 class="text-xl font-bold mb-2" id="item-platter-name">صينية البحار المشكلة</h4>
+                        <p class="text-gray-500 text-sm" id="item-platter-desc">تشكيلة واسعة من ثمار البحر.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- قسم المشويات (باسم مختلف) -->
-        <section class="mb-24">
-            <div class="mb-12 border-r-4 border-red-600 pr-6">
-                <h2 class="text-4xl serif italic">مختارات اللهب</h2>
-                <p class="text-gray-500 mt-2 italic">أفخر أنواع اللحوم المشوية على الفحم</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="menu-card">
-                    <div class="img-box"><img src="https://loremflickr.com/600/400/steak,grill" alt="[attachment_3](attachment)"></div>
-                    <div class="p-6"><h4 class="text-xl font-bold mb-2">ريب آي ستيك</h4></div>
-                </div>
-                <div class="menu-card">
-                    <div class="img-box"><img src="https://loremflickr.com/600/400/kebab,grill" alt=""></div>
-                    <div class="p-6"><h4 class="text-xl font-bold mb-2">كباب سيلو الفاخر</h4></div>
-                </div>
-                <div class="menu-card">
-                    <div class="img-box"><img src="https://loremflickr.com/600/400/lamb,chops" alt="[attachment_4](attachment)"></div>
-                    <div class="p-6"><h4 class="text-xl font-bold mb-2">ريش غنم متبلة</h4></div>
-                </div>
-                <div class="menu-card">
-                    <div class="img-box"><img src="https://loremflickr.com/600/400/bbq,chicken" alt="[attachment_5](attachment)"></div>
-                    <div class="p-6"><h4 class="text-xl font-bold mb-2">دجاج مشوي بالأعشاب</h4></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- قسم المشروبات والأركيلة -->
+        <!-- قسم المشروبات -->
         <section id="drinks" class="mb-24">
-            <div class="mb-12 border-r-4 border-amber-500 pr-6">
-                <h2 class="text-4xl serif italic">المشروبات والأركيلة</h2>
+            <div class="mb-12 border-r-4 border-amber-500 pr-6" id="section-drinks-header">
+                <h2 class="text-4xl serif italic" id="drinks-title">المشروبات والأركيلة</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="menu-card">
-                    <div class="img-box"><img src="https://loremflickr.com/600/400/cocktail,cold" alt=""></div>
-                    <div class="p-6"><span class="text-blue-400 text-xs font-bold">Cold</span><h4 class="text-lg font-bold">موخيتو منعش</h4></div>
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/cocktail,drink" alt="[attachment_3](attachment)"></div>
+                    <div class="p-6"><span class="text-blue-400 text-xs font-bold">Cold</span><h4 class="text-lg font-bold" id="item-cold">موخيتو منعش</h4></div>
                 </div>
                 <div class="menu-card">
-                    <div class="img-box"><img src="https://loremflickr.com/600/400/coffee,hot" alt=""></div>
-                    <div class="p-6"><span class="text-orange-400 text-xs font-bold">Hot</span><h4 class="text-lg font-bold">قهوة لاتيه</h4></div>
-                </div>
-                <div class="menu-card">
-                    <div class="img-box"><img src="https://loremflickr.com/600/400/coffee,v60" alt=""></div>
-                    <div class="p-6"><span class="text-purple-400 text-xs font-bold">Specialty</span><h4 class="text-lg font-bold">قهوة مختصة</h4></div>
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/coffee,latte" alt="[attachment_4](attachment)"></div>
+                    <div class="p-6"><span class="text-orange-400 text-xs font-bold">Hot</span><h4 class="text-lg font-bold" id="item-hot">قهوة لاتيه</h4></div>
                 </div>
                 <div class="menu-card border-amber-600/50 bg-amber-900/10">
-                    <div class="img-box"><img src="https://loremflickr.com/600/400/shisha,hookah" alt=""></div>
-                    <div class="p-6"><span class="text-amber-500 text-xs font-bold">Arguile</span><h4 class="text-lg font-bold text-amber-500">أركيلة سيلو VIP</h4></div>
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/hookah,shisha" alt="[attachment_5](attachment)"></div>
+                    <div class="p-6"><span class="text-amber-500 text-xs font-bold">Arguile</span><h4 class="text-lg font-bold text-amber-500" id="item-shisha">أركيلة سيلو VIP</h4></div>
+                </div>
+                <div class="menu-card">
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/coffee,specialty" alt="[attachment_6](attachment)"></div>
+                    <div class="p-6"><span class="text-purple-400 text-xs font-bold">Specialty</span><h4 class="text-lg font-bold" id="item-v60">قهوة مختصة V60</h4></div>
                 </div>
             </div>
         </section>
 
         <!-- قسم الأجواء -->
-        <section id="events" class="mb-24">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl serif italic">عالم سيلو</h2>
-                <p class="text-gray-400 mt-4">عيش اللحظة في أفضل أجواء ليلية</p>
-            </div>
+        <section id="events" class="mb-24 text-center">
+            <h2 class="text-5xl serif italic mb-4" id="events-title">عالم سيلو</h2>
+            <p class="text-gray-400 mb-12" id="events-sub">عيش اللحظة في أفضل أجواء ليلية</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="h-[400px] rounded-3xl overflow-hidden relative group">
-                    <img src="https://loremflickr.com/800/1200/party,night" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex items-end">
-                        <h4 class="text-2xl font-bold">حفلات الـ DJ</h4>
+                    <img src="https://loremflickr.com/800/1200/party,club" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center p-4">
+                        <h4 class="text-2xl font-bold" id="event-dj">حفلات الـ DJ</h4>
                     </div>
                 </div>
                 <div class="h-[400px] rounded-3xl overflow-hidden relative group">
-                    <img src="https://loremflickr.com/800/1200/restaurant,view" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex items-end">
-                        <h4 class="text-2xl font-bold">إطلالة التراس</h4>
+                    <img src="https://loremflickr.com/800/1200/rooftop,terrace" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center p-4">
+                        <h4 class="text-2xl font-bold" id="event-terrace">إطلالة التراس</h4>
                     </div>
                 </div>
                 <div class="h-[400px] rounded-3xl overflow-hidden relative group">
-                    <img src="https://loremflickr.com/800/1200/lounge,interior" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex items-end">
-                        <h4 class="text-2xl font-bold">الجلسات الداخلية</h4>
+                    <img src="https://loremflickr.com/800/1200/lounge,modern" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center p-4">
+                        <h4 class="text-2xl font-bold" id="event-interior">الجلسات الداخلية</h4>
                     </div>
                 </div>
             </div>
@@ -241,17 +220,177 @@
         <h2 class="text-3xl serif italic mb-6">CIELO.</h2>
         <div class="flex flex-wrap justify-center gap-10 mb-12">
             <div>
-                <span class="block text-gray-500 text-xs uppercase mb-2">Inquiries</span>
-                <a href="mailto:cccvcccv3@gmail.com" class="text-xl hover:text-blue-500 transition">cccvcccv3@gmail.com</a>
+                <span class="block text-gray-500 text-[10px] uppercase mb-2" id="footer-inq">Inquiries</span>
+                <a href="mailto:cccvcccv3@gmail.com" class="text-lg hover:text-blue-500 transition">cccvcccv3@gmail.com</a>
             </div>
             <div>
-                <span class="block text-gray-500 text-xs uppercase mb-2">WhatsApp</span>
-                <a href="https://wa.me/9647805380508" class="text-xl text-green-500 font-bold">009647805380508</a>
+                <span class="block text-gray-500 text-[10px] uppercase mb-2" id="footer-wa">WhatsApp</span>
+                <a href="https://wa.me/9647805380508" class="text-lg text-green-500 font-bold">009647805380508</a>
             </div>
         </div>
-        <p class="text-gray-700 text-[10px] tracking-[0.5em] uppercase">© 2024 Cielolounge.com. All Rights Reserved.</p>
+        <p class="text-gray-700 text-[10px] tracking-[0.4em] uppercase">© 2024 Cielolounge.com</p>
     </footer>
 
+    <script>
+        const translations = {
+            ar: {
+                dir: 'rtl',
+                banner: 'النطاق متاح للشراء: CIELOLOUNGE.COM',
+                forSale: 'للبيع',
+                heroDesc: 'إطلالة تعانق السحاب، وأطباق تحاكي الفن. سيلو لونج وجهتكم الأولى للفخامة في قلب العراق.',
+                btnMenu: 'قائمة الطعام',
+                btnEvents: 'أجواء سيلو',
+                seafoodTitle: 'كنوز البحر',
+                seafoodSub: 'أفضل الاختيارات البحرية الطازجة يومياً',
+                lobster: 'لوبستر سيلو الملكي',
+                shrimp: 'جمبري مشوي ملكي',
+                salmon: 'سلمون مشوي ببطء',
+                platter: 'صينية البحار المشكلة',
+                itemDesc: 'طهي فاخر مع زبدة الأعشاب.',
+                drinksTitle: 'المشروبات والأركيلة',
+                itemCold: 'موخيتو منعش',
+                itemHot: 'قهوة لاتيه',
+                itemShisha: 'أركيلة سيلو VIP',
+                itemV60: 'قهوة مختصة V60',
+                eventsTitle: 'عالم سيلو',
+                eventsSub: 'عيش اللحظة في أفضل أجواء ليلية',
+                eventDj: 'حفلات الـ DJ',
+                eventTerrace: 'إطلالة التراس',
+                eventInterior: 'الجلسات الداخلية',
+                footerInq: 'الاستفسارات',
+                footerWa: 'واتساب'
+            },
+            en: {
+                dir: 'ltr',
+                banner: 'DOMAIN FOR SALE: CIELOLOUNGE.COM',
+                forSale: 'FOR SALE',
+                heroDesc: 'A view that touches the clouds, and dishes that mimic art. Cielo Lounge is your premier destination for luxury in the heart of Iraq.',
+                btnMenu: 'Our Menu',
+                btnEvents: 'Cielo Vibes',
+                seafoodTitle: 'Sea Treasures',
+                seafoodSub: 'The finest fresh seafood daily',
+                lobster: 'Royal Cielo Lobster',
+                shrimp: 'Grilled King Prawns',
+                salmon: 'Slow Grilled Salmon',
+                platter: 'Mixed Seafood Platter',
+                itemDesc: 'Exquisite cooking with herb butter.',
+                drinksTitle: 'Drinks & Hookah',
+                itemCold: 'Refreshing Mojito',
+                itemHot: 'Coffee Latte',
+                itemShisha: 'Cielo VIP Shisha',
+                itemV60: 'V60 Specialty Coffee',
+                eventsTitle: 'Cielo Universe',
+                eventsSub: 'Live the moment in the best night vibes',
+                eventDj: 'DJ Nights',
+                eventTerrace: 'Terrace View',
+                eventInterior: 'Indoor Seating',
+                footerInq: 'Inquiries',
+                footerWa: 'WhatsApp'
+            },
+            fr: {
+                dir: 'ltr',
+                banner: 'DOMAINE À VENDRE: CIELOLOUNGE.COM',
+                forSale: 'À VENDRE',
+                heroDesc: 'Une vue qui touche les nuages, et des plats qui imitent l\'art. Cielo Lounge est votre destination de luxe au cœur de l\'Irak.',
+                btnMenu: 'Le Menu',
+                btnEvents: 'Vibrations Cielo',
+                seafoodTitle: 'Trésors de la Mer',
+                seafoodSub: 'Les meilleurs fruits de mer frais',
+                lobster: 'Homard Royal Cielo',
+                shrimp: 'Crevettes Royales Grillées',
+                salmon: 'Saumon Grillé Lentement',
+                platter: 'Plateau de Fruits de Mer',
+                itemDesc: 'Cuisine exquise au beurre d\'herbes.',
+                drinksTitle: 'Boissons et Chicha',
+                itemCold: 'Mojito Rafraîchissant',
+                itemHot: 'Café Latté',
+                itemShisha: 'Chicha Cielo VIP',
+                itemV60: 'Café de Spécialité V60',
+                eventsTitle: 'Univers Cielo',
+                eventsSub: 'Vivez l\'instant dans les meilleures soirées',
+                eventDj: 'Soirées DJ',
+                eventTerrace: 'Vue sur la Terrasse',
+                eventInterior: 'Sièges Intérieurs',
+                footerInq: 'Demandes',
+                footerWa: 'WhatsApp'
+            },
+            de: {
+                dir: 'ltr',
+                banner: 'DOMAIN ZU VERKAUFEN: CIELOLOUNGE.COM',
+                forSale: 'ZU VERKAUFEN',
+                heroDesc: 'Ein Ausblick, der die Wolken berührt, und Gerichte, die Kunst nachahmen. Cielo Lounge ist Ihr Ziel für Luxus im Herzen des Irak.',
+                btnMenu: 'Die Speisekarte',
+                btnEvents: 'Cielo-Vibes',
+                seafoodTitle: 'Meeres-Schätze',
+                seafoodSub: 'Täglich feinste frische Meeresfrüchte',
+                lobster: 'Königlicher Cielo-Hummer',
+                shrimp: 'Gegrillte Riesengarnelen',
+                salmon: 'Langsam gegrillter Lachs',
+                platter: 'Gemischte Meeresfrüchteplatte',
+                itemDesc: 'Exquisite Zubereitung mit Kräuterbutter.',
+                drinksTitle: 'Getränke & Shisha',
+                itemCold: 'Erfrischender Mojito',
+                itemHot: 'Kaffee Latte',
+                itemShisha: 'Cielo VIP Shisha',
+                itemV60: 'V60 Spezialitätenkaffee',
+                eventsTitle: 'Cielo-Universum',
+                eventsSub: 'Erleben Sie den Moment in bester Atmosphäre',
+                eventDj: 'DJ-Nächte',
+                eventTerrace: 'Terrassenblick',
+                eventInterior: 'Innenbereich',
+                footerInq: 'Anfragen',
+                footerWa: 'WhatsApp'
+            }
+        };
+
+        function changeLanguage(lang) {
+            const data = translations[lang];
+            document.getElementById('html-tag').setAttribute('dir', data.dir);
+            document.body.setAttribute('dir', data.dir);
+            
+            // Text updates
+            document.getElementById('banner-text').textContent = data.banner;
+            document.getElementById('tag-for-sale').textContent = data.forSale;
+            document.getElementById('hero-desc').textContent = data.heroDesc;
+            document.getElementById('btn-menu').textContent = data.btnMenu;
+            document.getElementById('btn-events').textContent = data.btnEvents;
+            
+            document.getElementById('seafood-title').textContent = data.seafoodTitle;
+            document.getElementById('seafood-sub').textContent = data.seafoodSub;
+            
+            document.getElementById('item-lobster-name').textContent = data.lobster;
+            document.getElementById('item-shrimp-name').textContent = data.shrimp;
+            document.getElementById('item-salmon-name').textContent = data.salmon;
+            document.getElementById('item-platter-name').textContent = data.platter;
+            
+            document.getElementById('drinks-title').textContent = data.drinksTitle;
+            document.getElementById('item-cold').textContent = data.itemCold;
+            document.getElementById('item-hot').textContent = data.itemHot;
+            document.getElementById('item-shisha').textContent = data.itemShisha;
+            document.getElementById('item-v60').textContent = data.itemV60;
+
+            document.getElementById('events-title').textContent = data.eventsTitle;
+            document.getElementById('events-sub').textContent = data.eventsSub;
+            document.getElementById('event-dj').textContent = data.eventDj;
+            document.getElementById('event-terrace').textContent = data.eventTerrace;
+            document.getElementById('event-interior').textContent = data.eventInterior;
+
+            document.getElementById('footer-inq').textContent = data.footerInq;
+            document.getElementById('footer-wa').textContent = data.footerWa;
+
+            // Change border orientation based on direction
+            const headers = [document.getElementById('section-seafood-header'), document.getElementById('section-drinks-header')];
+            headers.forEach(h => {
+                if (data.dir === 'rtl') {
+                    h.classList.remove('border-l-4', 'pl-6');
+                    h.classList.add('border-r-4', 'pr-6');
+                } else {
+                    h.classList.remove('border-r-4', 'pr-6');
+                    h.classList.add('border-l-4', 'pl-6');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
 
