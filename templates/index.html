@@ -1,281 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cielo Lounge | Sea & Sky Luxury</title>
+    <title>CIELO LOUNGE | تجربة الفخامة المطلقة</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --sky-blue: #87CEEB;
-            --baby-blue: #E0F2F7;
-            --sand-beige: #F5E6D3;
-            --deep-ocean: #1A5276;
-        }
-
         body {
-            font-family: 'Montserrat', 'Almarai', sans-serif;
-            background: linear-gradient(135deg, var(--baby-blue) 0%, #ffffff 100%);
-            color: var(--deep-ocean);
-            scroll-behavior: smooth;
-        }
-
-        .title-font { font-family: 'Playfair Display', serif; }
-
-        .bg-ocean-gradient {
-            background: linear-gradient(180deg, var(--sky-blue) 0%, var(--baby-blue) 50%, var(--sand-beige) 100%);
-        }
-
-        .glass-menu {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-        }
-
-        .sale-banner {
-            background: rgba(245, 230, 211, 0.9);
-            border-bottom: 1px solid rgba(26, 82, 118, 0.1);
-        }
-
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
+            font-family: 'Cairo', sans-serif;
+            background-color: #050505;
             color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            overflow-x: hidden;
+        }
+        .serif { font-family: 'Playfair Display', serif; }
+        
+        /* Elegant Domain Banner - Less intrusive but highly visible */
+        .sale-banner {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6, #1e3a8a);
+            background-size: 200% auto;
+            animation: pulseBanner 4s infinite;
+        }
+        @keyframes pulseBanner {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-section {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://loremflickr.com/1920/1080/restaurant,luxury') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
-            animation: pulse-green 2s infinite;
+            text-align: center;
         }
 
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        .hero-video-container {
-            position: relative;
-            height: 100vh;
-            width: 100%;
+        .menu-card {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 20px;
             overflow: hidden;
-            background-color: #000;
+            transition: 0.4s ease;
         }
-
-        .hero-video-container img {
-            object-fit: cover;
+        .menu-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-8px);
+        }
+        .img-box {
+            height: 220px;
+            background-color: #1a1a1a;
+            position: relative;
+        }
+        .img-box img {
             width: 100%;
             height: 100%;
-            opacity: 0.8;
+            object-fit: cover;
         }
 
-        .wave-overlay {
+        /* Loading fallback for images */
+        .img-placeholder {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg') repeat-x;
-            background-size: 1000px 150px;
-            animation: wave 20s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-            transform: translate3d(0, 0, 0);
-            opacity: 0.3;
-        }
-
-        @keyframes wave {
-            0% { margin-left: 0; }
-            100% { margin-left: -1000px; }
-        }
-
-        .sand-button {
-            background-color: var(--sand-beige);
-            color: var(--deep-ocean);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(26, 82, 118, 0.1);
-        }
-
-        .sand-button:hover {
-            background-color: var(--deep-ocean);
-            color: white;
-        }
-
-        .menu-img-container {
-            position: relative;
-            height: 400px;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            background-color: #eee;
-        }
-
-        .menu-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1s ease;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1a1a1a;
+            z-index: -1;
         }
     </style>
 </head>
-<body>
+<body dir="rtl">
 
-    <!-- WhatsApp Pulse Button (Direct Link) -->
-    <a href="https://wa.me/9647805380508" class="whatsapp-float" target="_blank" title="Contact on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Top Sale Banner -->
-    <div class="sale-banner py-3 px-4 sticky top-0 z-[100] backdrop-blur-md">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center gap-2">
-            <p class="text-sm font-light tracking-wide text-ocean uppercase">
-                Premium Domain For Sale: <span class="font-bold">CieloLounge.com</span>
-            </p>
-            <p class="text-lg font-bold title-font italic md:text-xl" dir="rtl">
-                هذا النطاق الاستراتيجي معروض للبيع.. تملّك براند CieloLounge الآن.
-            </p>
-            <!-- Updated link to open WhatsApp -->
-            <a href="https://wa.me/9647805380508" target="_blank" class="text-xs font-bold border-b border-ocean hover:text-sky-600 transition tracking-widest">WHATSAPP: 009647805380508</a>
+    <!-- لافتة بيع الدومين - تصميم أنيق واحترافي -->
+    <div class="sale-banner py-3 px-6 sticky top-0 z-[500] shadow-xl">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <span class="bg-yellow-400 text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">For Sale</span>
+                <h2 class="text-sm md:text-lg font-bold tracking-tight">النطاق متاح للشراء: <span class="underline decoration-yellow-400">CIELOLOUNGE.COM</span></h2>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:block text-xs opacity-80">للتواصل المباشر مع المالك:</span>
+                <a href="https://wa.me/9647805380508" class="bg-white text-blue-900 px-4 py-1.5 rounded-full text-sm font-black hover:scale-105 transition transform">
+                    <i class="fab fa-whatsapp ml-1"></i> 009647805380508
+                </a>
+            </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="absolute top-20 w-full z-50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="text-3xl title-font font-bold tracking-tighter text-white drop-shadow-lg">
-                CIELO <span class="italic font-light">Lounge</span>
-            </div>
-            <div class="hidden md:flex gap-10 text-[11px] font-bold tracking-[0.3em] text-white">
-                <a href="#home" class="hover:text-sand-beige transition">THE EXPERIENCE</a>
-                <a href="#menu" class="hover:text-sand-beige transition">THE MENU</a>
-                <a href="#contact" class="hover:text-sand-beige transition">ACQUISITION</a>
-            </div>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
-    <section id="home" class="hero-video-container">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" alt="[مطعم فخم على البحر]">
-        <div class="absolute inset-0 bg-black/20"></div>
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
-            <h2 class="uppercase tracking-[0.5em] text-sm mb-4 font-light drop-shadow-md">Luxury Open-Air Identity</h2>
-            <h1 class="text-6xl md:text-9xl title-font italic mb-8 drop-shadow-2xl">Breathe the Sea</h1>
-            <div class="flex flex-col sm:flex-row gap-6">
-                <a href="#menu" class="sand-button px-12 py-4 font-bold tracking-widest text-xs uppercase shadow-lg">View Gallery</a>
-                <a href="#contact" class="bg-white/10 backdrop-blur-md border border-white/30 px-12 py-4 font-bold tracking-widest text-xs uppercase hover:bg-white hover:text-ocean transition">Contact Owner</a>
+    <header class="hero-section px-6">
+        <div class="relative z-10">
+            <h3 class="text-blue-400 font-bold tracking-[0.4em] mb-4 text-sm uppercase">Luxury Experience</h3>
+            <h1 class="text-7xl md:text-9xl serif italic mb-6">Cielo.</h1>
+            <p class="max-w-xl mx-auto text-lg text-gray-200 mb-10 leading-relaxed font-light">إطلالة تعانق السحاب، وأطباق تحاكي الفن. سيلو لونج وجهتكم الأولى للفخامة في قلب العراق.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#food" class="bg-white text-black px-10 py-4 font-bold rounded-full hover:bg-blue-600 hover:text-white transition-all text-sm">قائمة الطعام</a>
+                <a href="#events" class="border border-white/30 text-white px-10 py-4 font-bold rounded-full hover:bg-white hover:text-black transition-all text-sm">أجواء سيلو</a>
             </div>
         </div>
-        <div class="wave-overlay"></div>
-    </section>
+    </header>
 
-    <!-- Digital Menu Section -->
-    <section id="menu" class="py-32 px-6 bg-ocean-gradient relative">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-6xl title-font italic mb-4">The Digital Menu</h2>
-                <p class="text-sm tracking-[0.4em] uppercase opacity-60">Exclusively Curated</p>
+    <main class="max-w-7xl mx-auto px-6 py-24">
+        
+        <!-- قسم الأكلات البحرية -->
+        <section id="food" class="mb-24">
+            <div class="mb-12 border-r-4 border-blue-600 pr-6">
+                <h2 class="text-4xl serif italic">كنوز البحر</h2>
+                <p class="text-gray-500 mt-2 italic">أفضل الاختيارات البحرية الطازجة يومياً</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Category 1 -->
-                <div class="glass-menu p-4 group cursor-pointer overflow-hidden">
-                    <div class="menu-img-container">
-                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80" alt="[مشروبات منعشة]" class="group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 text-white">
-                            <h3 class="text-2xl title-font italic">Refreshing Drinks</h3>
-                            <p class="text-[10px] tracking-widest uppercase opacity-80" dir="rtl">مشروبات منعشة</p>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Item 1 -->
+                <div class="menu-card">
+                    <div class="img-box">
+                        <img src="https://loremflickr.com/600/400/lobster,seafood" alt="[attachment_0](attachment)">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">لوبستر سيلو الملكي</h4>
+                        <p class="text-gray-500 text-sm">طهي فاخر مع زبدة الأعشاب.</p>
                     </div>
                 </div>
-
-                <!-- Category 2 -->
-                <div class="glass-menu p-4 group cursor-pointer overflow-hidden">
-                    <div class="menu-img-container">
-                     <img src="https://images.unsplash.com/photo-1551735748-03f16960f854?auto=format&fit=crop&w=800&q=80" 
-     alt="Seafood" 
-     style="width: 100%; height: 100%; object-fit: cover; display: block;" 
-     class="group-hover:scale-110 transition-transform duration-500">
-
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 text-white">
-                            <h3 class="text-2xl title-font italic">Seafood Delicacies</h3>
-                            <p class="text-[10px] tracking-widest uppercase opacity-80" dir="rtl">أطباق بحرية</p>
-                        </div>
+                <!-- Item 2 -->
+                <div class="menu-card">
+                    <div class="img-box">
+                        <img src="https://loremflickr.com/600/400/shrimp,cooked" alt="[attachment_1](attachment)">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">جمبري مشوي ملكي</h4>
+                        <p class="text-gray-500 text-sm">متبل بصلصة الليمون والزعفران.</p>
                     </div>
                 </div>
-
-                <!-- Category 3 -->
-                <div class="glass-menu p-4 group cursor-pointer overflow-hidden">
-                    <div class="menu-img-container">
-                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="[قهوة مختصة عالمية]" class="group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 text-white">
-                            <h3 class="text-2xl title-font italic">World Coffee</h3>
-                            <p class="text-[10px] tracking-widest uppercase opacity-80" dir="rtl">قهوة عالمية</p>
-                        </div>
+                <!-- Item 3 -->
+                <div class="menu-card">
+                    <div class="img-box">
+                        <img src="https://loremflickr.com/600/400/salmon,fish" alt="[attachment_2](attachment)">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">سلمون مشوي ببطء</h4>
+                        <p class="text-gray-500 text-sm">يقدم مع الخضار الموسمية.</p>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="menu-card">
+                    <div class="img-box">
+                        <img src="https://loremflickr.com/600/400/seafood,platter" alt="">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">صينية البحار المشكلة</h4>
+                        <p class="text-gray-500 text-sm">تشكيلة واسعة من ثمار البحر.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-32 bg-white px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl title-font italic mb-12">Contact Owner</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-                <div class="p-10 bg-sand-beige rounded-[30px] flex flex-col items-center gap-4">
-                    <i class="fas fa-envelope text-3xl mb-2"></i>
-                    <p class="text-[10px] tracking-widest uppercase font-bold opacity-50">Official Email</p>
-                    <a href="mailto:cccvcccv3@gmail.com" class="text-xl font-semibold break-all">cccvcccv3@gmail.com</a>
+        <!-- قسم المشويات (باسم مختلف) -->
+        <section class="mb-24">
+            <div class="mb-12 border-r-4 border-red-600 pr-6">
+                <h2 class="text-4xl serif italic">مختارات اللهب</h2>
+                <p class="text-gray-500 mt-2 italic">أفخر أنواع اللحوم المشوية على الفحم</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="menu-card">
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/steak,grill" alt="[attachment_3](attachment)"></div>
+                    <div class="p-6"><h4 class="text-xl font-bold mb-2">ريب آي ستيك</h4></div>
                 </div>
-                <div class="p-10 bg-baby-blue rounded-[30px] flex flex-col items-center gap-4">
-                    <i class="fab fa-whatsapp text-3xl mb-2 text-green-600"></i>
-                    <p class="text-[10px] tracking-widest uppercase font-bold opacity-50">Direct WhatsApp</p>
-                    <!-- Link updated to wa.me for direct chat -->
-                    <a href="https://wa.me/9647805380508" target="_blank" class="text-2xl font-bold tracking-tighter hover:text-green-600 transition">009647805380508</a>
+                <div class="menu-card">
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/kebab,grill" alt=""></div>
+                    <div class="p-6"><h4 class="text-xl font-bold mb-2">كباب سيلو الفاخر</h4></div>
+                </div>
+                <div class="menu-card">
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/lamb,chops" alt="[attachment_4](attachment)"></div>
+                    <div class="p-6"><h4 class="text-xl font-bold mb-2">ريش غنم متبلة</h4></div>
+                </div>
+                <div class="menu-card">
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/bbq,chicken" alt="[attachment_5](attachment)"></div>
+                    <div class="p-6"><h4 class="text-xl font-bold mb-2">دجاج مشوي بالأعشاب</h4></div>
                 </div>
             </div>
+        </section>
 
-            <form class="max-w-xl mx-auto space-y-4">
-                <input type="text" placeholder="Your Name" class="w-full p-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-sky-200">
-                <input type="email" placeholder="Your Email" class="w-full p-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-sky-200">
-                <textarea placeholder="Message or Acquisition Offer" rows="4" class="w-full p-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-sky-200"></textarea>
-                <button type="button" class="w-full py-5 sand-button rounded-xl font-bold tracking-[0.2em] uppercase text-xs">Send Inquiry</button>
-            </form>
-        </div>
-    </section>
+        <!-- قسم المشروبات والأركيلة -->
+        <section id="drinks" class="mb-24">
+            <div class="mb-12 border-r-4 border-amber-500 pr-6">
+                <h2 class="text-4xl serif italic">المشروبات والأركيلة</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="menu-card">
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/cocktail,cold" alt=""></div>
+                    <div class="p-6"><span class="text-blue-400 text-xs font-bold">Cold</span><h4 class="text-lg font-bold">موخيتو منعش</h4></div>
+                </div>
+                <div class="menu-card">
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/coffee,hot" alt=""></div>
+                    <div class="p-6"><span class="text-orange-400 text-xs font-bold">Hot</span><h4 class="text-lg font-bold">قهوة لاتيه</h4></div>
+                </div>
+                <div class="menu-card">
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/coffee,v60" alt=""></div>
+                    <div class="p-6"><span class="text-purple-400 text-xs font-bold">Specialty</span><h4 class="text-lg font-bold">قهوة مختصة</h4></div>
+                </div>
+                <div class="menu-card border-amber-600/50 bg-amber-900/10">
+                    <div class="img-box"><img src="https://loremflickr.com/600/400/shisha,hookah" alt=""></div>
+                    <div class="p-6"><span class="text-amber-500 text-xs font-bold">Arguile</span><h4 class="text-lg font-bold text-amber-500">أركيلة سيلو VIP</h4></div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="py-20 text-center border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-2xl title-font font-bold mb-8">CIELO LOUNGE</div>
-            <p class="text-[10px] tracking-[0.4em] uppercase opacity-40">&copy; 2024 Cielolounge.com. WhatsApp: 009647805380508</p>
+        <!-- قسم الأجواء -->
+        <section id="events" class="mb-24">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl serif italic">عالم سيلو</h2>
+                <p class="text-gray-400 mt-4">عيش اللحظة في أفضل أجواء ليلية</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="h-[400px] rounded-3xl overflow-hidden relative group">
+                    <img src="https://loremflickr.com/800/1200/party,night" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex items-end">
+                        <h4 class="text-2xl font-bold">حفلات الـ DJ</h4>
+                    </div>
+                </div>
+                <div class="h-[400px] rounded-3xl overflow-hidden relative group">
+                    <img src="https://loremflickr.com/800/1200/restaurant,view" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex items-end">
+                        <h4 class="text-2xl font-bold">إطلالة التراس</h4>
+                    </div>
+                </div>
+                <div class="h-[400px] rounded-3xl overflow-hidden relative group">
+                    <img src="https://loremflickr.com/800/1200/lounge,interior" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex items-end">
+                        <h4 class="text-2xl font-bold">الجلسات الداخلية</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black py-20 px-6 border-t border-gray-900 text-center">
+        <h2 class="text-3xl serif italic mb-6">CIELO.</h2>
+        <div class="flex flex-wrap justify-center gap-10 mb-12">
+            <div>
+                <span class="block text-gray-500 text-xs uppercase mb-2">Inquiries</span>
+                <a href="mailto:cccvcccv3@gmail.com" class="text-xl hover:text-blue-500 transition">cccvcccv3@gmail.com</a>
+            </div>
+            <div>
+                <span class="block text-gray-500 text-xs uppercase mb-2">WhatsApp</span>
+                <a href="https://wa.me/9647805380508" class="text-xl text-green-500 font-bold">009647805380508</a>
+            </div>
         </div>
+        <p class="text-gray-700 text-[10px] tracking-[0.5em] uppercase">© 2024 Cielolounge.com. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('fixed', 'bg-white/80', 'backdrop-blur-md', 'top-0', 'text-ocean', 'shadow-sm', 'w-full');
-                nav.classList.remove('absolute', 'top-20', 'text-white');
-            } else {
-                nav.classList.remove('fixed', 'bg-white/80', 'backdrop-blur-md', 'top-0', 'text-ocean', 'shadow-sm', 'w-full');
-                nav.classList.add('absolute', 'top-20', 'text-white');
-            }
-        });
-    </script>
 </body>
 </html>
 
