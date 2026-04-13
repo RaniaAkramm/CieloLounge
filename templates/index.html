@@ -1,92 +1,279 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paybass | Global Currency Index</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Cielo Lounge | Sea & Sky Luxury</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #020617; --card-bg: #0f172a; --accent: #f59e0b; --text: #f8fafc;
+            --sky-blue: #87CEEB;
+            --baby-blue: #E0F2F7;
+            --sand-beige: #F5E6D3;
+            --deep-ocean: #1A5276;
         }
+
         body {
-            background-color: var(--bg); color: var(--text);
-            font-family: 'Inter', sans-serif; margin: 0; padding: 20px;
-            display: flex; flex-direction: column; align-items: center;
+            font-family: 'Montserrat', 'Almarai', sans-serif;
+            background: linear-gradient(135deg, var(--baby-blue) 0%, #ffffff 100%);
+            color: var(--deep-ocean);
+            scroll-behavior: smooth;
         }
-        .header { margin: 40px 0; text-align: center; }
-        .header h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
-        .header p { color: #94a3b8; font-size: 1.1rem; }
 
-        .grid-container {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-            width: 100%; max-width: 600px;
-        }
-        .currency-card {
-            background: var(--card-bg); border: 1px solid #1e293b;
-            border-radius: 20px; padding: 25px; text-align: center;
-            cursor: pointer; transition: all 0.3s ease;
-            text-decoration: none; color: inherit;
-        }
-        .currency-card:hover {
-            border-color: var(--accent); transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-        }
-        .currency-icon {
-            font-size: 2rem; color: var(--accent); margin-bottom: 10px;
-            display: block;
-        }
-        .currency-name { font-weight: 700; font-size: 1.2rem; }
-        .currency-sub { font-size: 0.8rem; color: #64748b; margin-top: 5px; }
+        .title-font { font-family: 'Playfair Display', serif; }
 
-        .sale-footer {
-            margin-top: 50px; padding: 20px; border-radius: 15px;
-            border: 1px dashed #334155; width: 100%; max-width: 500px; text-align: center;
+        .bg-ocean-gradient {
+            background: linear-gradient(180deg, var(--sky-blue) 0%, var(--baby-blue) 50%, var(--sand-beige) 100%);
         }
-        .btn-contact {
-            background: var(--accent); color: #020617; padding: 12px 25px;
-            border-radius: 10px; text-decoration: none; font-weight: 800;
-            display: inline-block; margin-top: 15px;
+
+        .glass-menu {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+        }
+
+        .sale-banner {
+            background: rgba(245, 230, 211, 0.9);
+            border-bottom: 1px solid rgba(26, 82, 118, 0.1);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .hero-video-container {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .hero-video-container img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .wave-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg') repeat-x;
+            background-size: 1000px 150px;
+            animation: wave 20s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+            transform: translate3d(0, 0, 0);
+            opacity: 0.3;
+        }
+
+        @keyframes wave {
+            0% { margin-left: 0; }
+            100% { margin-left: -1000px; }
+        }
+
+        .sand-button {
+            background-color: var(--sand-beige);
+            color: var(--deep-ocean);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(26, 82, 118, 0.1);
+        }
+
+        .sand-button:hover {
+            background-color: var(--deep-ocean);
+            color: white;
+        }
+
+        .menu-img-container {
+            position: relative;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            background-color: #eee;
+        }
+
+        .menu-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Paybass</h1>
-        <p>World's Leading Currency Markets</p>
+    <!-- WhatsApp Pulse Button (Direct Link) -->
+    <a href="https://wa.me/9647805380508" class="whatsapp-float" target="_blank" title="Contact on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Top Sale Banner -->
+    <div class="sale-banner py-3 px-4 sticky top-0 z-[100] backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center gap-2">
+            <p class="text-sm font-light tracking-wide text-ocean uppercase">
+                Premium Domain For Sale: <span class="font-bold">CieloLounge.com</span>
+            </p>
+            <p class="text-lg font-bold title-font italic md:text-xl" dir="rtl">
+                هذا النطاق الاستراتيجي معروض للبيع.. تملّك براند CieloLounge الآن.
+            </p>
+            <!-- Updated link to open WhatsApp -->
+            <a href="https://wa.me/9647805380508" target="_blank" class="text-xs font-bold border-b border-ocean hover:text-sky-600 transition tracking-widest">WHATSAPP: 009647805380508</a>
+        </div>
     </div>
 
-    <div class="grid-container">
-        <a href="/usd" class="currency-card">
-            <span class="currency-icon">USD</span>
-            <div class="currency-name">US Dollar</div>
-            <div class="currency-sub">Global Reserve Currency</div>
-        </a>
+    <!-- Navigation -->
+    <nav class="absolute top-20 w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="text-3xl title-font font-bold tracking-tighter text-white drop-shadow-lg">
+                CIELO <span class="italic font-light">Lounge</span>
+            </div>
+            <div class="hidden md:flex gap-10 text-[11px] font-bold tracking-[0.3em] text-white">
+                <a href="#home" class="hover:text-sand-beige transition">THE EXPERIENCE</a>
+                <a href="#menu" class="hover:text-sand-beige transition">THE MENU</a>
+                <a href="#contact" class="hover:text-sand-beige transition">ACQUISITION</a>
+            </div>
+        </div>
+    </nav>
 
-        <a href="/eur" class="currency-card">
-            <span class="currency-icon">EUR</span>
-            <div class="currency-name">Euro</div>
-            <div class="currency-sub">European Union Markets</div>
-        </a>
+    <!-- Hero Section -->
+    <section id="home" class="hero-video-container">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" alt="[مطعم فخم على البحر]">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
+            <h2 class="uppercase tracking-[0.5em] text-sm mb-4 font-light drop-shadow-md">Luxury Open-Air Identity</h2>
+            <h1 class="text-6xl md:text-9xl title-font italic mb-8 drop-shadow-2xl">Breathe the Sea</h1>
+            <div class="flex flex-col sm:flex-row gap-6">
+                <a href="#menu" class="sand-button px-12 py-4 font-bold tracking-widest text-xs uppercase shadow-lg">View Gallery</a>
+                <a href="#contact" class="bg-white/10 backdrop-blur-md border border-white/30 px-12 py-4 font-bold tracking-widest text-xs uppercase hover:bg-white hover:text-ocean transition">Contact Owner</a>
+            </div>
+        </div>
+        <div class="wave-overlay"></div>
+    </section>
 
-        <a href="/cny" class="currency-card">
-            <span class="currency-icon">CNY</span>
-            <div class="currency-name">Yuan</div>
-            <div class="currency-sub">Asian Trading Power</div>
-        </a>
+    <!-- Digital Menu Section -->
+    <section id="menu" class="py-32 px-6 bg-ocean-gradient relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl title-font italic mb-4">The Digital Menu</h2>
+                <p class="text-sm tracking-[0.4em] uppercase opacity-60">Exclusively Curated</p>
+            </div>
 
-        <a href="/gbp" class="currency-card">
-            <span class="currency-icon">GBP</span>
-            <div class="currency-name">Pound</div>
-            <div class="currency-sub">British Financial Standard</div>
-        </a>
-    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Category 1 -->
+                <div class="glass-menu p-4 group cursor-pointer overflow-hidden">
+                    <div class="menu-img-container">
+                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80" alt="[مشروبات منعشة]" class="group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl title-font italic">Refreshing Drinks</h3>
+                            <p class="text-[10px] tracking-widest uppercase opacity-80" dir="rtl">مشروبات منعشة</p>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="sale-footer">
-        <p style="color: #94a3b8; font-size: 0.9rem;">Paybass.com is available for acquisition</p>
-        <a href="mailto:ssess535@gmail.com" class="btn-contact">INQUIRE NOW</a>
-    </div>
+                <!-- Category 2 -->
+                <div class="glass-menu p-4 group cursor-pointer overflow-hidden">
+                    <div class="menu-img-container">
+                        <img src="https://images.unsplash.com/photo-1551735748-03f16960f854?auto=format&fit=crop&w=800&q=80" alt="[أطباق بحرية فاخرة]" class="group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl title-font italic">Seafood Delicacies</h3>
+                            <p class="text-[10px] tracking-widest uppercase opacity-80" dir="rtl">أطباق بحرية</p>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Category 3 -->
+                <div class="glass-menu p-4 group cursor-pointer overflow-hidden">
+                    <div class="menu-img-container">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="[قهوة مختصة عالمية]" class="group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl title-font italic">World Coffee</h3>
+                            <p class="text-[10px] tracking-widest uppercase opacity-80" dir="rtl">قهوة عالمية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 bg-white px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl title-font italic mb-12">Contact Owner</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+                <div class="p-10 bg-sand-beige rounded-[30px] flex flex-col items-center gap-4">
+                    <i class="fas fa-envelope text-3xl mb-2"></i>
+                    <p class="text-[10px] tracking-widest uppercase font-bold opacity-50">Official Email</p>
+                    <a href="mailto:cccvcccv3@gmail.com" class="text-xl font-semibold break-all">cccvcccv3@gmail.com</a>
+                </div>
+                <div class="p-10 bg-baby-blue rounded-[30px] flex flex-col items-center gap-4">
+                    <i class="fab fa-whatsapp text-3xl mb-2 text-green-600"></i>
+                    <p class="text-[10px] tracking-widest uppercase font-bold opacity-50">Direct WhatsApp</p>
+                    <!-- Link updated to wa.me for direct chat -->
+                    <a href="https://wa.me/9647805380508" target="_blank" class="text-2xl font-bold tracking-tighter hover:text-green-600 transition">009647805380508</a>
+                </div>
+            </div>
+
+            <form class="max-w-xl mx-auto space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full p-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-sky-200">
+                <input type="email" placeholder="Your Email" class="w-full p-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-sky-200">
+                <textarea placeholder="Message or Acquisition Offer" rows="4" class="w-full p-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-sky-200"></textarea>
+                <button type="button" class="w-full py-5 sand-button rounded-xl font-bold tracking-[0.2em] uppercase text-xs">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 text-center border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-2xl title-font font-bold mb-8">CIELO LOUNGE</div>
+            <p class="text-[10px] tracking-[0.4em] uppercase opacity-40">&copy; 2024 Cielolounge.com. WhatsApp: 009647805380508</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('fixed', 'bg-white/80', 'backdrop-blur-md', 'top-0', 'text-ocean', 'shadow-sm', 'w-full');
+                nav.classList.remove('absolute', 'top-20', 'text-white');
+            } else {
+                nav.classList.remove('fixed', 'bg-white/80', 'backdrop-blur-md', 'top-0', 'text-ocean', 'shadow-sm', 'w-full');
+                nav.classList.add('absolute', 'top-20', 'text-white');
+            }
+        });
+    </script>
 </body>
 </html>
+
+```
